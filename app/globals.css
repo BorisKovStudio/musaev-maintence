@@ -20,7 +20,15 @@
 }
 
 body {
-  background: var(--background);
+  /* Keep color tokens; add hero background image */
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Georgia, serif;
+
+  /* Background image with subtle dark overlay for better text readability */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url('/hero-image.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
