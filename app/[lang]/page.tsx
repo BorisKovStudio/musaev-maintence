@@ -19,10 +19,10 @@ const texts = {
 export default async function MaintenancePage({
   params,
 }: {
-  params: Promise<{ lang: "ru" | "en" }>;
+  params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
-  const t = texts[lang] ?? texts.ru;
+  const t = texts[lang as "ru" | "en"] ?? texts.ru;
 
   return (
     <section className="min-h-[70vh] flex items-center justify-center">
