@@ -13,40 +13,15 @@ export async function generateStaticParams() {
   return [{ lang: "ru" }, { lang: "en" }];
 }
 
-function LangSwitcher({ lang, pathname }: { lang: string; pathname: string }) {
-  // Replace first segment after leading slash with target locale
-  const redirectTo = (target: string) => {
-    const parts = pathname.split("/");
-    parts[1] = target; // pathname like /ru, /en/anything
-    return parts.join("/");
-  };
 
-  return (
-    <div className="flex items-center gap-2 text-sm uppercase">
-      <Link
-        href={redirectTo("ru")}
-        className={`px-2 py-1 border ${lang === "ru" ? "border-yellow-400" : "border-transparent"}`}
-      >
-        Рус
-      </Link>
-      <Link
-        href={redirectTo("en")}
-        className={`px-2 py-1 border ${lang === "en" ? "border-yellow-400" : "border-transparent"}`}
-      >
-        Eng
-      </Link>
-    </div>
-  );
-}
-
-export default function LangLayout({
+export default async function LangLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: { lang: "ru" | "en" };
+  params: Promise<{ lang: "ru" | "en" }>;
 }) {
-  const { lang } = params;
+  const { lang } = await params;
 
   return (
     <html lang={lang}>

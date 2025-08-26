@@ -16,12 +16,12 @@ const texts = {
   },
 };
 
-export default function MaintenancePage({
+export default async function MaintenancePage({
   params,
 }: {
-  params: { lang: "ru" | "en" };
+  params: Promise<{ lang: "ru" | "en" }>;
 }) {
-  const { lang } = params;
+  const { lang } = await params;
   const t = texts[lang] ?? texts.ru;
 
   return (
